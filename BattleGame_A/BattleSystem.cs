@@ -28,6 +28,7 @@ namespace BattleGame_A
                     bossHP = bossHP - damage;
                 }
             }
+            Application.Exit();
         }
 
         public static int RunBattle(int attackType)
