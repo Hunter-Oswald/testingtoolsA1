@@ -16,9 +16,12 @@ namespace BattleGame_A
             //
             int bossHP = 300;
             while (bossHP > 0) {
-                Console.WriteLine("The Boss has" + bossHP+ "HP Remaining!");
+                Console.WriteLine("The Boss has " + bossHP + " HP Remaining!");
                 Console.WriteLine("Enter your next attack type (1 = F, 2 = W, 3 = G: ");
-                int attackType = Console.ReadLine();
+                String attackTypeS = Console.ReadLine();
+
+                int attackType = Int16.Parse(attackTypeS);
+
                 if (attackType <= 0 || attackType > 3)
                 {
                     Console.WriteLine("Invalid input.");
@@ -28,7 +31,8 @@ namespace BattleGame_A
                     bossHP = bossHP - damage;
                 }
             }
-            Application.Exit();
+            Console.WriteLine("Boss has been defeated!");
+            Environment.Exit(0);
         }
 
         public static int RunBattle(int attackType)
@@ -57,7 +61,7 @@ namespace BattleGame_A
         {
         // attack power random from 1-20
             Random rnd = new Random();
-            int attackPow = rnd.next(1, 21);
+            int attackPow = rnd.Next(1, 21);
 
             double elementMult = 1;
 
@@ -100,9 +104,21 @@ namespace BattleGame_A
             if(critChance == 20)
             {
                 crit = 3;
+                Console.WriteLine("Critical Hit!");
             }
 
-            int finalAttackPow = attackPow * elementMult * crit;
+            if (elementMult == 2)
+            {
+                Console.WriteLine("Attack was super effective!");
+            } else if (elementMult == 0.5)
+            {
+                Console.WriteLine("Attack was not very effective.");
+            } else
+            {
+
+            }
+
+            int finalAttackPow = (int)((int) attackPow * elementMult * crit);
             return finalAttackPow;
 
 
