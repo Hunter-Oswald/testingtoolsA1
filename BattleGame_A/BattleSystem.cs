@@ -20,7 +20,17 @@ namespace BattleGame_A
                 Console.WriteLine("Enter your next attack type (1 = F, 2 = W, 3 = G: ");
                 String attackTypeS = Console.ReadLine();
 
-                int attackType = Int16.Parse(attackTypeS);
+                int attackType = 1;
+
+                if (int.TryParse(attackTypeS, out attackType))
+                {
+                    
+                } else
+                {
+                    // make sure the input is valid. if not, assign it to fire.
+                    Console.WriteLine("Invalid input. Attack type automatically set to Fire.");
+                }
+                
 
                 if (attackType <= 0 || attackType > 3)
                 {
